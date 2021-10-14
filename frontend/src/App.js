@@ -1,13 +1,13 @@
-import React from "react";
-import "./App.css";
-import Navigation from "./modules/Shell/Navigation";
-import Home from "./pages/Home";
+import React from 'react';
+import './App.css';
+import Navigation from './modules/Shell/Navigation';
+import Home from './pages/Home';
 
 function App() {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
-    fetch("/api")
+    fetch('/api')
       .then((res) => res.json())
       .then((data) => setData(data.message));
   }, []);
@@ -17,7 +17,7 @@ function App() {
       <Navigation />
       <Home />
       <header className="App-header">
-        <p>{!data ? "Briefcase" : data}</p>
+        <p>{!data ? 'Briefcase' : data}</p>
       </header>
     </div>
   );
