@@ -1,4 +1,4 @@
-const User = require('../models/model.js');
+const User = require('../models/user-model.js');
 
 //USER POST REQUEST
 createUser = (req, res) => {
@@ -11,7 +11,11 @@ createUser = (req, res) => {
         });
     }
 
-    const user = new User(body);
+    const user = new User({
+        username : body.username,
+        displayName : body.displayName,
+        email : body.email
+    });
 
     if(!user) {
         return res.status(400).json({ success: false, error: err });
@@ -52,9 +56,7 @@ updateUser = async (req, res) => {
         user.username = body.username
         user.displayName = body.displayName
         user.email = body.email
-        user
-            .save()
-            .then(() => {
+        user.save().then(() => {
                 return res.status(200).json({
                     success: true,
                     id: user._id,
@@ -72,7 +74,7 @@ updateUser = async (req, res) => {
 
 //USER DELETE REQUEST
 deleteUser = async (req, res) => {
-    await User.findOneAndDelete({ _id: req.params.id }, (err, movie) => {
+    await User.findOneAndDelete({ _id: req.params.id }, (err, user) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
