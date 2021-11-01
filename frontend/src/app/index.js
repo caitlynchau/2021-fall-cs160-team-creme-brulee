@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "../App.css";
 import Navigation from "../components/Navigation";
 import Home from "../pages/Home";
+import Feed from "../pages/Feed";
 
 
 function App() {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
-    fetch("/api")
+    fetch("/api/user")
       .then((res) => res.json())
       .then((data) => setData(data.message));
   }, []);
@@ -19,12 +20,15 @@ function App() {
         <div className="App">
           <Navigation />
           <Switch>
-            {/*<Route path="/users/create" exact component={CreateUser} />*/}
+            <Route exact path="/" component={Home}/>
+            <Route path="/feed" component={Feed}/>
           </Switch>
-          <Home />
-          <header className="App-header">
+          {/* <Home /> */}
+          {/* TODO: remove this */}
+          {/* <header className="App-header">
             <p>{!data ? "Briefcase" : data}</p>
-          </header>
+          </header> */}
+          {console.log(data)}
         </div>
       </Router>
   );
