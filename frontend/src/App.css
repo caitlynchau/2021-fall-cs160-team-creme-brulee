@@ -1,6 +1,6 @@
 .App {
   background-color: #e4ccb6;
-  height: 100%;
+  height: 100vh;
 }
 
 .App-header {
@@ -18,10 +18,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
 }
 
-.signup-container {
+.home-card {
+  margin-top: 40px;
+}
+
+.card-form {
   width: 400px;
   padding: 20px;
 }
+

@@ -23,7 +23,7 @@ function App() {
             <Route exact path="/" component={Home}/>
             <Route path="/feed" component={Feed}/>
           </Switch>
-          {/* <Home /> */}
+         
           {/* TODO: remove this */}
           {/* <header className="App-header">
             <p>{!data ? "Briefcase" : data}</p>
