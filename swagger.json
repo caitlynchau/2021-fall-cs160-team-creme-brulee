@@ -1,0 +1,51 @@
+{
+    "openapi": "4.1.6",
+    "info": {
+      "version": "1.0.0",
+      "title": "Briefcase API",
+      "description": "Application API Documentation",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Users",
+        "description": "API for users in the system"
+      }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+      "/users": {
+        "get": {
+          "tags": ["Users"],
+          "summary": "Gets all the users",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Users"
+              }
+            },
+            "404": {
+              "description": "User Not Found",
+              "schema": {
+                "$ref": "#/definitions/Users"
+              }
+            },
+            "400": {
+              "description": "Error",
+              "schema": {
+                "$ref": "#/definitions/Users"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
