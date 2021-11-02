@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const userRouter = require("./routes/user-router.js")
+const swaggerUi = require('swagger-ui-express');
+swaggerDocument = require('..swagger.json/');
 
 const db = require('./db')
 
@@ -25,3 +27,5 @@ app.use('/api', userRouter);
 app.listen(3001, () => {
     console.log(`Server listening on 3001`);
 });
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
