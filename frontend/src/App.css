@@ -1,16 +1,6 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  background-color: #e4ccb6;
+  height: 100vh;
 }
 
 .App-header {
@@ -24,6 +14,18 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.home-card {
+  margin-top: 40px;
+}
+
+.card-form {
+  width: 400px;
+  padding: 20px;
+}
+
