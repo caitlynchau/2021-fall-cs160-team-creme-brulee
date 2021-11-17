@@ -1,14 +1,32 @@
 import React from 'react';
 import { Box, Card } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import apis from '../../api';
+import { response } from 'express';
 
 function SignIn() {
+  const [signUpEmail, setSignUpEmail] = React.useState('');
+  const [signUpUser, setSignUpUser] = React.useState('');
+  const [signUpPass, setSignUpPass] = React.useState('');
+  const [signInPass, setSignInPass] = React.useState('');
+  const [signInUser, setSignInUser] = React.useState('');
+
   const [newUser, setNewUserForm] = React.useState(false);
+  const [userInfo, setUserInfo] = React.useState(null);
 
   const history = useHistory();
   const goToLandingPage = () => history.push('/feed');
 
-  return (
+  const payload = {signUpUser, signUpEmail, signUpPass}; 
+
+  const onSignUp = () => {
+    apis.createUser(payload).then(response => {
+      setUserInfo(response.data);
+    });
+    console.log(response.data);
+  };
+
+  return (  
     <>
       <div className="home">
         <Card className="home-card"> 
@@ -17,21 +35,21 @@ function SignIn() {
               {/* Email */}
               <div> 
                 <label className="form-label">Email address</label>
-                <input type="email" className="form-control" placeholder="name@example.com"/>
+                <input onChange={(e) => setSignUpEmail(e.target.value)} type="email" className="form-control" placeholder="name@example.com"/>
               </div>
               {/* Username */}
               <div>
                 <label className="form-label">Username</label>
-                <input type="text" className="form-control"/>
+                <input onChange={(e) => setSignUpUser(e.target.value)} type="text" className="form-control"/>
               </div>
               {/* Password */}
               <label className="form-label">Password</label>
-              <input type="password" className="form-control"/>
+              <input onChange={(e) => setSignUpPass(e.target.value)} type="password" className="form-control"/>
               <Box mt={2}>
                 <button 
                   type="submit" 
                   className="btn btn-primary"
-                  onClick={goToLandingPage}
+                  onClick={onSignUp}
                 >
                   Submit
                 </button>
@@ -48,11 +66,11 @@ function SignIn() {
               {/* Username */}
               <div>
                 <label className="form-label">Username</label>
-                <input type="text" className="form-control"/>
+                <input onChange={(e) => setSignInUser(e.target.value)} type="text" className="form-control"/>
               </div>
               {/* Password */}
               <label className="form-label">Password</label>
-              <input type="password" className="form-control"/>
+              <input onChange={(e) => setSignInPass(e.target.value)} type="password" className="form-control"/>
               <Box mt={2}>
                 <button 
                   type="submit" 

@@ -6,19 +6,10 @@ import Navigation from "../components/Navigation";
 import Home from "../pages/Home";
 import Feed from "../pages/Feed";
 import SignIn from '../pages/SignIn';
+import Upload from '../pages/Upload';
 
 
 function App() {
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    fetch("/api/user")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
-
-  console.log(data);
-
   return (
       <Router>
         <div className="App">
@@ -27,6 +18,7 @@ function App() {
             <Route exact path='/' component={Home} />
             <Route path="/signin" component={SignIn}/>
             <Route path="/feed" component={Feed}/>
+            <Route path="/upload" component={Upload} />
           </Switch>  
         </div>
       </Router>
