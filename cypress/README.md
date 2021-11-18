@@ -17,6 +17,8 @@ Test for valid email addresses:
 ## Test buttons on Homepage
 
 Test that sign up button leads to feed page:
+<img width="966" alt="Screen Shot 2021-11-17 at 11 39 13 PM" src="https://user-images.githubusercontent.com/12708259/142372697-fd47057c-bff6-47cd-88f6-6ff780127449.png">
+
 
 ## Test backend user API 
 
