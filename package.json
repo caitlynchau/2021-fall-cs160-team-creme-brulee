@@ -16,7 +16,17 @@
     "express": "^4.17.1",
     "mongodb": "^4.1.2",
     "mongoose": "^6.0.11",
+
     "nodemon": "^2.0.14",
     "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "2.4.1"
   }
 }

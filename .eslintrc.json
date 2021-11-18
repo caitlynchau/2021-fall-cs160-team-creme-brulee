@@ -1,0 +1,36 @@
+{
+  "env": {
+    "browser": true,
+    // "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:eslint-comments/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    // "ecmaFeatures": {
+    //   "jsx": true
+    // },
+    // "ecmaVersion": 13,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    // ESLint rules
+    "arrow-body-style": ["error", "as-needed"],
+
+    // Disable rule for simple-import-sort plugin.
+    "sort-imports": "off",
+
+    // Allow state mutations for RTK.
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }],
+
+    // external rules
+    "eslint-comments/no-unused-disable": "error",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
+  }
+}
