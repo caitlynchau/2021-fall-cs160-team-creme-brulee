@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Card } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import apis from '../../api';
-import { response } from 'express';
 
 function SignIn() {
   const [signUpEmail, setSignUpEmail] = React.useState('');
@@ -20,10 +19,11 @@ function SignIn() {
   const payload = {signUpUser, signUpEmail, signUpPass}; 
 
   const onSignUp = () => {
-    apis.createUser(payload).then(response => {
+    apis.createUser(payload).then((response) => {
       setUserInfo(response.data);
+      console.log(response.data);
     });
-    console.log(response.data);
+    
   };
 
   return (  
