@@ -1,5 +1,7 @@
 # Test Plan
 
+Run tests: npx open cypress
+
 ## Test login feature with username/password combinations
 
 Test for valid username:
