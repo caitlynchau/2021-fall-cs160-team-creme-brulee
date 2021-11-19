@@ -44,6 +44,9 @@ function Navigation() {
               <li class="nav-item">
                 <a class="nav-link" href="#">Inspiration</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin">Admin</a>
+              </li>
             </ul>
             <form class="d-flex">
               <button class="btn btn-outline-success" type="button">Log In</button>

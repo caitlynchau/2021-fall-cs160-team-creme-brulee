@@ -4,6 +4,7 @@ import "../App.css";
 import Navigation from "../components/Navigation";
 import Home from "../pages/Home";
 import Feed from "../pages/Feed";
+import Admin from "../pages/Admin";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/feed" component={Feed}/>
+            <Route path="/admin" component={Admin}/>
           </Switch>
          
           {/* TODO: remove this */}
