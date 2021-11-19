@@ -6,6 +6,7 @@ import { Button } from '@material-ui/core';
 
 function Home() {
   return (
+    <div style={{ backgroundImage: `url("https://upload.wikimedia.org/wikipedia/commons/9/9a/BellevueAndSeattle.jpg")` }}>
     <React.Fragment>
       <Parallax>
         <GridContainer>
@@ -21,6 +22,7 @@ function Home() {
         </GridContainer>
       </Parallax>
     </React.Fragment>
+    </div>
   )
 }
 

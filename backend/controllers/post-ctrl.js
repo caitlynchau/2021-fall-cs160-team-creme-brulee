@@ -12,10 +12,9 @@ createPost = (req, res) => {
     }
 
     const post = new Post({
-        username : body.username,
-        dateCreated : body.dateCreated,
         location : body.location,
-        caption : body.caption
+        caption : body.caption,
+        tags : body.tags
     });
 
     if(!post) {
@@ -25,6 +24,7 @@ createPost = (req, res) => {
     post.save().then(() => {
         return res.status(201).json({
             success: true,
+            data: post,
             id: post._id,
             message: 'Post created!',
         });
@@ -55,7 +55,7 @@ updatePost = async (req, res) => {
             })
         }
         post.username = post.username
-        post.displayName = post.displayName
+        post.password = post.password
         post.email = post.email
         post.save().then(() => {
                 return res.status(200).json({
