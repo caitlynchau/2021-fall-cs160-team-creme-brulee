@@ -26,6 +26,9 @@ function Navigation() {
             <li className="nav-item">
               <a className="nav-link" href="/">Inspiration</a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/admin">Admin</a>
+            </li>
           </ul>
 
           <form className="d-flex">

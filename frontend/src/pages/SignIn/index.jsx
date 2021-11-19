@@ -19,6 +19,7 @@ function SignIn() {
   const payload = {signUpUser, signUpEmail, signUpPass}; 
 
   const onSignUp = () => {
+    console.log('in sign up');
     apis.createUser(payload).then((response) => {
       setUserInfo(response.data);
       console.log(response.data);

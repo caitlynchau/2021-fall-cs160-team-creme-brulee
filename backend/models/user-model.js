@@ -8,7 +8,7 @@ const User = new Schema(
         displayName: { type: String},
         email: { type: String},
     },
-    { timestamps: true },
+    { timestamps: true }, 
 );
 
 // const User = mongoose.model('users', UserSchema);

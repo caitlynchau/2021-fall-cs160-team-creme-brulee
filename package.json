@@ -16,7 +16,12 @@
     "express": "^4.17.1",
     "mongodb": "^4.1.2",
     "mongoose": "^6.0.11",
+<<<<<<< HEAD
+    "nodemon": "^2.0.15",
+    "swagger-ui-express": "^4.1.6"
+=======
     "nodemon": "^2.0.15"
+>>>>>>> 9aec7e101243847029c34e7d0e4a902e1917b366
   },
   "devDependencies": {
     "eslint": "^7.32.0",
