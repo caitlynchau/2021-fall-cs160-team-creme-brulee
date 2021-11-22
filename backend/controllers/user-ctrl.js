@@ -12,7 +12,7 @@ createUser = (req, res) => {
         });
     }
 
-    const user = new User(body);
+    const user = new User({username: body.username, password: body.password, email: body.email});
 
     if(!user) {
         return res.status(400).json({ success: false, error: err });
