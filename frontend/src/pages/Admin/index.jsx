@@ -78,8 +78,8 @@ class Admin extends Component {
                 filterable: true,
             },
             {
-                Header: 'Name',
-                accessor: 'name',
+                Header: 'Email',
+                accessor: 'email',
                 filterable: true,
             },
             {

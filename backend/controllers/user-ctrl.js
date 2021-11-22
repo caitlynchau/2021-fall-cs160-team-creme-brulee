@@ -3,7 +3,6 @@ const User = require('../models/user-model.js');
 //USER POST REQUEST
 createUser = (req, res) => {
     const body = req.body;
-    console.log(body);
 
     if(!body) {
         return res.status(400).json({
@@ -12,12 +11,11 @@ createUser = (req, res) => {
         });
     }
 
-    const user = new User({username: body.username, password: body.password, email: body.email});
+    const user = new User({username: body.signUpUser, password: body.signUpPass, email: body.signUpEmail});
 
     if(!user) {
         return res.status(400).json({ success: false, error: err });
     }
-    console.log(user);
 
     user.save().then(() => {
         return res.status(201).json({
