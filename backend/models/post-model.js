@@ -3,10 +3,9 @@ const Schema = mongoose.Schema
 
 const Post = new Schema(
     {
-        username: { type: String},
-        datePosted: { type: Date},
-        location: {type: String},
-        caption: { type: String},
+        location: {type: String, required: true},
+        caption: { type: String, required: true},
+        tags: {type: String, required: true}
     },
     { timestamps: true },
 );

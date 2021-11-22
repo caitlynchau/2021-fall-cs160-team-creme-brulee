@@ -19,9 +19,17 @@
   flex-direction: column;
   align-items: center;
 }
-
+.home-text {
+  padding-left: 70px;
+  padding-bottom: 280px;
+}
 .home-card {
   margin-top: 40px;
+}
+.feed-card {
+  padding: 20px;
+  width: 500px;
+  align-self: center;
 }
 
 .card-form {
