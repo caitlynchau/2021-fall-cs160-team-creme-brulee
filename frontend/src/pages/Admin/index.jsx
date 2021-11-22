@@ -90,7 +90,7 @@ class Admin extends Component {
             {
                 Header: 'Password',
                 accessor: 'password',
-                Cell: props => <span>{props.value.join(' / ')}</span>,
+                filterable: true,
             },
             {
                 Header: '',
