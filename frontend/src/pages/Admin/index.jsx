@@ -78,8 +78,8 @@ class Admin extends Component {
                 filterable: true,
             },
             {
-                Header: 'Name',
-                accessor: 'name',
+                Header: 'Email',
+                accessor: 'email',
                 filterable: true,
             },
             {
@@ -88,9 +88,9 @@ class Admin extends Component {
                 filterable: true,
             },
             {
-                Header: 'Display Name',
-                accessor: 'displayName',
-                Cell: props => <span>{props.value.join(' / ')}</span>,
+                Header: 'Password',
+                accessor: 'password',
+                filterable: true,
             },
             {
                 Header: '',

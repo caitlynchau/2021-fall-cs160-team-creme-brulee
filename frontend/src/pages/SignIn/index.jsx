@@ -1,4 +1,4 @@
-import React from 'react';
+  import React, { useCallback, useEffect } from 'react';
 import { Box, Card } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import apis from '../../api';
@@ -14,23 +14,29 @@ function SignIn() {
   const [userInfo, setUserInfo] = React.useState(null);
 
   const history = useHistory();
-  const goToLandingPage = () => history.push('/feed');
+  const goToLandingPage = useCallback(() => {
+    history.push('/feed');
+  }, [history]);
 
   const payload = {signUpUser, signUpEmail, signUpPass}; 
 
   const onSignUp = () => {
-    console.log('in sign up');
     apis.createUser(payload).then((response) => {
       setUserInfo(response.data);
-      console.log(response.data);
     });
-    
   };
 
+  // navigate to feed upon successful sign in or sign up
+  useEffect(() => {
+    if (userInfo && userInfo.success) {
+      goToLandingPage();
+    }
+  }, [userInfo, goToLandingPage])
+
   return (  
-    <>
-      <div className="home">
-        <Card className="home-card"> 
+    <div>
+      <div className="signin">
+        <Card className="signin-card"> 
           {!newUser ?
             <Box className="card-form">
               {/* Email */}
@@ -92,7 +98,7 @@ function SignIn() {
           }
         </Card>
       </div>
-    </>
+    </div>
   );
 }
 
