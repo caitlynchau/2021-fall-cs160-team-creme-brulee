@@ -1,6 +1,7 @@
 .App {
   background-color: #e4ccb6;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
 }
 
 .App-header {
@@ -14,7 +15,7 @@
   color: white;
 }
 
-.home {
+.signin{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,13 +24,15 @@
   padding-left: 70px;
   padding-bottom: 280px;
 }
-.home-card {
+.signin-card {
   margin-top: 40px;
 }
 .feed-card {
   padding: 20px;
   width: 500px;
   align-self: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 .card-form {
