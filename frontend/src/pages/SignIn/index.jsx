@@ -34,10 +34,9 @@ function SignIn() {
   }, [userInfo, goToLandingPage])
 
   return (  
-    <>
-      <div style={{ backgroundImage: `url("https://www.usnews.com/dims4/USNEWS/7612599/2147483647/thumbnail/640x420/quality/85/?url=http%3A%2F%2Fmedia.beam.usnews.com%2F9c%2F15%2F43180a3e4e0fa73902d8f8a8165e%2Fhike-maui-hana2.jpg")` }}>
-      <div className="home">
-        <Card className="home-card"> 
+    <div>
+      <div className="signin">
+        <Card className="signin-card"> 
           {!newUser ?
             <Box className="card-form">
               {/* Email */}
@@ -99,8 +98,7 @@ function SignIn() {
           }
         </Card>
       </div>
-      </div>
-    </>
+    </div>
   );
 }
 
