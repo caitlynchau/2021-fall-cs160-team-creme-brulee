@@ -4,6 +4,8 @@ const Post = require('../models/post-model.js');
 createPost = (req, res) => {
     const body = req.body;
 
+    console.log('body', body);
+
     if(!body) {
         return res.status(400).json({
             success: false,
@@ -14,8 +16,11 @@ createPost = (req, res) => {
     const post = new Post({
         location : body.location,
         caption : body.caption,
-        tags : body.tags
+        tags : body.tags,
+        img: body.selectedFile,
     });
+    
+    console.log('post', post);
 
     if(!post) {
         return res.status(400).json({ success: false, error: err });
