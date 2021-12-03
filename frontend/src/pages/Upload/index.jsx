@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useRef } from "react";
-import { Card, Box, Paper } from '@material-ui/core';
+import { Card, Box } from '@material-ui/core';
 import apis from "../../api";
 
 function Upload() {

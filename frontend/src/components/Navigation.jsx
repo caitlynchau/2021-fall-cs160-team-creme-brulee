@@ -18,16 +18,7 @@ function Navigation() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link" href="/">Locations</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/">Food</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/">Inspiration</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/admin">Admin</a>
+              <a className="nav-link" href="/feed">Feed</a>
             </li>
           </ul>
 
@@ -40,7 +31,18 @@ function Navigation() {
               }}>
                 Log In
             </button>
-          </form>          
+          </form>  
+
+          <form className="d-flex">
+            <button 
+              className="btn btn-outline-success" 
+              type="button"
+              onClick={() => {
+                history.push("/upload");
+              }}>
+                Upload
+            </button>
+          </form>  
         </div>
       </div>
     </nav>
