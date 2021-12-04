@@ -1,20 +1,48 @@
-import React, { useState } from "react";
+import axios from 'axios';
+import React, { useState, useRef } from "react";
 import { Card, Box } from '@material-ui/core';
 import apis from "../../api";
 
 function Upload() {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [location, setLocation] = useState(null);
-  const [caption, setCaption] = useState(null);
-  const [tags, setTags] = useState(null);
+  const [location, setLocation] = useState('');
+  const [caption, setCaption] = useState('');
+  const [tags, setTags] = useState('');
+
+  // const FileUploader = ({onFileSelect}) => {
+  //   const fileInput = useRef(null)
+
+  //   const handleFileInput = (e) => {
+  //     onFileSelect(e.target.files[0]);
+  //     // const file = e.target.files[0];
+  //     // if(file.size > 1024)
+  //     //   onFileSelectError({error: "File size cannot exceed more than 1MB"});
+  //     // else onFileSelectSuccess(file);
+  //   }
+
+  //   return (
+  //     <div className="fileUploader">
+  //       <input type="file" onChange={handleFileInput} id="userpost" accept="image/*"></input>
+  //       <button onClick={e => fileInput.current && fileInput.current.click()} className="btn btn-primary"></button>
+  //     </div>
+  //   )
+  // }
+
+  const handleFileUpload = (event) => {
+    console.log(event.target.files[0]); // just print out the name
+    setSelectedFile(event.target.files[0]);
+  }
 
   const createPost = async () => {
-    const payload = { location, caption, tags }
+    console.log('inside create post: file', selectedFile);
+    const payload = { location, caption, tags, selectedFile };
+    console.log('payload', payload);
     await apis.createPost(payload).then(res => {
-      window.alert('Post Created! ' + res.status)
+      window.alert('Post Created! ' + res.status);
       console.log(res.data);
     })
   }
+  
   return (
     <>
       <div className="home">
@@ -23,8 +51,8 @@ function Upload() {
               <h1>Create a Post</h1>
                <div>
                  <label className="form-label">Choose a Photo</label>
-                 <input type="file" value={selectedFile} onChange={(e) => setSelectedFile(e.target.files[0])}/>
-               </div>
+                  <input type="file" id="user-post" accept="image/*" onChange={handleFileUpload} />
+              </div>
                {/* Location */}
                <div> 
                  <label className="form-label">Location</label>
