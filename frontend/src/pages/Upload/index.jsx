@@ -9,7 +9,6 @@ function Upload() {
   const [tags, setTags] = useState('');
 
   const handleFileUpload = (event) => {
-    console.log(event.target.files[0]); // just print out the name
     setSelectedFile(event.target.files[0]);
   }
 

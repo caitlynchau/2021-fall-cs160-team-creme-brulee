@@ -116,7 +116,7 @@ getPostById = async (req, res) => {
 
 //POSTS GET REQUEST
 getPosts = async (req, res) => {
-    await Posts.find({}, (err, posts) => {
+    await Post.find({}, (err, posts) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }

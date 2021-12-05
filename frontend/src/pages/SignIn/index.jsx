@@ -18,9 +18,10 @@ function SignIn() {
     history.push('/feed');
   }, [history]);
 
-  const payload = {signUpUser, signUpEmail, signUpPass}; 
+  
 
   const onSignUp = () => {
+    const payload = {signUpUser, signUpEmail, signUpPass}; 
     apis.createUser(payload).then((response) => {
       setUserInfo(response.data);
     });
