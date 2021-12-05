@@ -6,7 +6,7 @@ const Post = new Schema(
         location: {type: String, required: true},
         caption: { type: String, required: true},
         tags: {type: String, required: true},
-        img: {data: Buffer, contentType: String},
+        image: {type: String, required: true},
     },
     { timestamps: true },
 );

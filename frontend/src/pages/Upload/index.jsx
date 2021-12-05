@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Card, Box } from '@material-ui/core';
 import apis from "../../api";
 
@@ -9,37 +8,19 @@ function Upload() {
   const [caption, setCaption] = useState('');
   const [tags, setTags] = useState('');
 
-  // const FileUploader = ({onFileSelect}) => {
-  //   const fileInput = useRef(null)
-
-  //   const handleFileInput = (e) => {
-  //     onFileSelect(e.target.files[0]);
-  //     // const file = e.target.files[0];
-  //     // if(file.size > 1024)
-  //     //   onFileSelectError({error: "File size cannot exceed more than 1MB"});
-  //     // else onFileSelectSuccess(file);
-  //   }
-
-  //   return (
-  //     <div className="fileUploader">
-  //       <input type="file" onChange={handleFileInput} id="userpost" accept="image/*"></input>
-  //       <button onClick={e => fileInput.current && fileInput.current.click()} className="btn btn-primary"></button>
-  //     </div>
-  //   )
-  // }
-
   const handleFileUpload = (event) => {
     console.log(event.target.files[0]); // just print out the name
     setSelectedFile(event.target.files[0]);
   }
 
   const createPost = async () => {
-    console.log('inside create post: file', selectedFile);
-    const payload = { location, caption, tags, selectedFile };
-    console.log('payload', payload);
-    await apis.createPost(payload).then(res => {
+    const formData = new FormData();
+    formData.append('location', location);
+    formData.append('tags', tags);
+    formData.append('caption', caption);
+    formData.append('image', selectedFile);
+    await apis.createPost(formData).then(res => {
       window.alert('Post Created! ' + res.status);
-      console.log(res.data);
     })
   }
   

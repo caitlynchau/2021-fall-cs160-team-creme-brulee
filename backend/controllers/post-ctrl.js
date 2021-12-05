@@ -1,8 +1,11 @@
 const Post = require('../models/post-model.js');
+const fs = require('fs');
 
 //POST POST REQUEST
 createPost = (req, res) => {
     const body = req.body;
+    const url = req.protocol + '://' + req.get('host');
+    console.log('url', url);
 
     console.log('body', body);
 
@@ -17,7 +20,7 @@ createPost = (req, res) => {
         location : body.location,
         caption : body.caption,
         tags : body.tags,
-        img: body.selectedFile,
+        image: url + '/public/' + req.file.filename
     });
     
     console.log('post', post);
@@ -26,10 +29,10 @@ createPost = (req, res) => {
         return res.status(400).json({ success: false, error: err });
     }
 
-    post.save().then(() => {
+    post.save().then((result) => {
         return res.status(201).json({
             success: true,
-            data: post,
+            data: result,
             id: post._id,
             message: 'Post created!',
         });
@@ -124,6 +127,16 @@ getPosts = async (req, res) => {
         }
         return res.status(200).json({ success: true, data: posts })
     }).catch(err => console.log(err))
+}
+
+getAllPosts = async (req, res) => {
+    Post.find({}, (err, items) => {
+        if (err) {
+            console.log(err);
+            return res.status(404).json({success: false, error: 'Could not retrieve all posts'});
+        } 
+        return res.status(200).json({success: true, data: items})
+    })
 }
 
 module.exports = {
