@@ -5,9 +5,6 @@ const fs = require('fs');
 createPost = (req, res) => {
     const body = req.body;
     const url = req.protocol + '://' + req.get('host');
-    console.log('url', url);
-
-    console.log('body', body);
 
     if(!body) {
         return res.status(400).json({
@@ -20,10 +17,9 @@ createPost = (req, res) => {
         location : body.location,
         caption : body.caption,
         tags : body.tags,
+        itinerary: body.itinerary,
         image: url + '/public/' + req.file.filename
     });
-    
-    console.log('post', post);
 
     if(!post) {
         return res.status(400).json({ success: false, error: err });
@@ -126,17 +122,7 @@ getPosts = async (req, res) => {
                 .json({ success: false, error: `Post not found` })
         }
         return res.status(200).json({ success: true, data: posts })
-    }).catch(err => console.log(err))
-}
-
-getAllPosts = async (req, res) => {
-    Post.find({}, (err, items) => {
-        if (err) {
-            console.log(err);
-            return res.status(404).json({success: false, error: 'Could not retrieve all posts'});
-        } 
-        return res.status(200).json({success: true, data: items})
-    })
+    }).clone().catch(err => console.log(err))
 }
 
 module.exports = {
