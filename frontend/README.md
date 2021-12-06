@@ -1,1 +1,0 @@
-# Briefcase React App
