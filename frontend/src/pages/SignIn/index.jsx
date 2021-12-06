@@ -53,16 +53,16 @@ function SignIn() {
               {/* Email */}
               <div> 
                 <label className="form-label">Email address</label>
-                <input onChange={(e) => setSignUpEmail(e.target.value)} type="email" className="form-control" placeholder="name@example.com"/>
+                <input id="email" onChange={(e) => setSignUpEmail(e.target.value)} type="email" className="form-control" placeholder="name@example.com"/>
               </div>
               {/* Username */}
               <div>
                 <label className="form-label">Username</label>
-                <input onChange={(e) => setSignUpUser(e.target.value)} type="text" className="form-control"/>
+                <input id="user" onChange={(e) => setSignUpUser(e.target.value)} type="text" className="form-control"/>
               </div>
               {/* Password */}
               <label className="form-label">Password</label>
-              <input onChange={(e) => setSignUpPass(e.target.value)} type="password" className="form-control"/>
+              <input id="pass" onChange={(e) => setSignUpPass(e.target.value)} type="password" className="form-control"/>
               <Box mt={2}>
                 <button 
                   type="submit" 
@@ -84,11 +84,11 @@ function SignIn() {
               {/* Username */}
               <div>
                 <label className="form-label">Username</label>
-                <input onChange={(e) => setSignInUser(e.target.value)} type="text" className="form-control"/>
+                <input id="userin" onChange={(e) => setSignInUser(e.target.value)} type="text" className="form-control"/>
               </div>
               {/* Password */}
                 <label className="form-label">Password</label>
-                <input onChange={(e) => setSignInPass(e.target.value)} type="password" className="form-control"/>
+                <input id="passin" onChange={(e) => setSignInPass(e.target.value)} type="password" className="form-control"/>
               <Box mt={2}>
                 <button 
                   type="submit" 

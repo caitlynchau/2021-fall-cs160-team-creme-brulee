@@ -44,9 +44,20 @@ describe('Clicking Login Button', () => {
     })
   })
 
+describe('Login as Nonexistent User', () => {
+    it('nonexistent user', () => {
+        cy.visit('localhost:3000/signin')
+        cy.contains('Returning User?').click()
+        cy.get('[id^=userin]').type('joyce').should('have.value','joyce')
+        cy.get('[id^=passin').type('pass').should('have.value', 'pass')
+        cy.contains('Submit').click()
+        cy.url().should('include', 'signin')
+    })
+  })
+
 // Test Typing into Form Textboxes
-describe('Test Typing in Textboxes', () => {
-    it('testing typing in textboxes', () => {
+describe('Creating a New User', () => {
+    it('new user', () => {
         cy.visit('localhost:3000/signin')
         cy.get('[id^=email]').type('joyce@gmail.com').should('have.value','joyce@gmail.com')
         cy.get('[id^=user]').type('joyce').should('have.value','joyce')
@@ -54,6 +65,28 @@ describe('Test Typing in Textboxes', () => {
         cy.contains('Submit').click()
         cy.url().should('include', 'feed')
     })
+})
+
+describe('Disallowing a Duplicate User', () => {
+  it('duplicate user', () => {
+      cy.visit('localhost:3000/signin')
+      cy.get('[id^=email]').type('joyce@gmail.com').should('have.value','joyce@gmail.com')
+      cy.get('[id^=user]').type('joyce').should('have.value','joyce')
+      cy.get('[id^=pass').type('pass').should('have.value', 'pass')
+      cy.contains('Submit').click()
+      cy.url().should('include', 'signin') //check failed
+  })
+})
+
+describe('Login as Existent User', () => {
+  it('existent user', () => {
+      cy.visit('localhost:3000/signin')
+      cy.contains('Returning User?').click()
+      cy.get('[id^=userin]').type('joyce').should('have.value','joyce')
+      cy.get('[id^=passin').type('pass').should('have.value', 'pass')
+      cy.contains('Submit').click()
+      cy.url().should('include', 'feed')
+  })
 })
 
 // describe('Users api', () => {
