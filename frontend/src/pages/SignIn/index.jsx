@@ -13,7 +13,6 @@ function SignIn() {
 
   const [newUser, setNewUserForm] = React.useState(false);
   const [userInfo, setUserInfo] = React.useState(null);
-  const [message, setMessage] = React.useState('');
 
   const history = useHistory();
   const goToLandingPage = useCallback(() => {

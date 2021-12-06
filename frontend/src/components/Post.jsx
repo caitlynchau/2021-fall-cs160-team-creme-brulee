@@ -27,7 +27,7 @@ const ExpandMore = styled((props) => {
 }));
 
 function Post({ postData }) {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
