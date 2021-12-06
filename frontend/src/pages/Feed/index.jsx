@@ -19,7 +19,7 @@ function Feed() {
   return (
     <div className="feed">
       {posts && posts.success && 
-        posts.data.map(post => 
+        posts.data.slice().reverse().map(post => 
           <Post key={post._id} postData={post} />
         )
       }

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import { useHistory } from 'react-router-dom';
 import { Card, Box } from '@material-ui/core';
 import apis from "../../api";
 
@@ -13,6 +14,11 @@ function Upload() {
     setSelectedFile(event.target.files[0]);
   }
 
+  const history = useHistory();
+  const goToFeed = useCallback(() => {
+    history.push('/feed');
+  }, [history]);
+
   const createPost = async () => {
     const formData = new FormData();
     formData.append('location', location);
@@ -22,6 +28,7 @@ function Upload() {
     formData.append('itinerary', itinerary)
     await apis.createPost(formData).then(res => {
       window.alert('Post Created! ' + res.status);
+      goToFeed();
     })
   }
   

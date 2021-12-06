@@ -1,10 +1,13 @@
 import React, { useCallback, useEffect } from 'react';
 import { Box, Card } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-//import { setError } from 'react-hook-form'
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/userSlice';
 import apis from '../../api';
 
 function SignIn() {
+  const dispatch = useDispatch();
+
   const [signUpEmail, setSignUpEmail] = React.useState('');
   const [signUpUser, setSignUpUser] = React.useState('');
   const [signUpPass, setSignUpPass] = React.useState('');
@@ -40,9 +43,10 @@ function SignIn() {
   // navigate to feed upon successful sign in or sign up
   useEffect(() => {
     if (userInfo && userInfo.success) {
+      dispatch(setUser(userInfo.data.username));
       goToLandingPage();
     }
-  }, [userInfo, goToLandingPage])
+  }, [userInfo, goToLandingPage, dispatch])
 
   return (  
     <div>
