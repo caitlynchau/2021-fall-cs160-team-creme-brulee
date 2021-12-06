@@ -20,7 +20,7 @@ createPost = (req, res) => {
         itinerary: body.itinerary,
         image: url + '/public/' + req.file.filename
     });
-
+    
     if(!post) {
         return res.status(400).json({ success: false, error: err });
     }

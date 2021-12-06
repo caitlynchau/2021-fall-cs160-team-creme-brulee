@@ -1,0 +1,43 @@
+version: '3.9'
+
+services: 
+
+  backend: 
+    build: ./backend
+    expose: 
+      - ${APP_SERVER_PORT}
+    environment: 
+      API_HOST: ${API_HOST}
+      APP_SERVER_PORT: ${APP_SERVER_PORT}
+    ports:
+      - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
+
+    volumes:
+      - ./backend:/TCB/briefcase/backend
+    command: npm run dev
+    depends_on: 
+      - mongodb
+
+  frontend:
+    build: ./frontend
+    environment:
+      - REACT_APP_PORT=${REACT_APP_PORT}
+    expose:
+      - ${REACT_APP_PORT}
+    ports:
+      - ${REACT_APP_PORT}:${REACT_APP_PORT}
+    volumes:
+      - ./frontend:/TCB/briefcase/frontend
+    depends_on:
+      - backend
+    command: npm run start
+
+  mongodb:
+    image: mongo:latest
+    ports: 
+      - ${MONGODB_PORT}:${MONGODB_PORT}
+    
+
+
+
+

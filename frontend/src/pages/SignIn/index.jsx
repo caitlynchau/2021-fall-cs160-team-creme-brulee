@@ -1,6 +1,7 @@
-  import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Box, Card } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+//import { setError } from 'react-hook-form'
 import apis from '../../api';
 
 function SignIn() {
@@ -12,13 +13,12 @@ function SignIn() {
 
   const [newUser, setNewUserForm] = React.useState(false);
   const [userInfo, setUserInfo] = React.useState(null);
+  const [message, setMessage] = React.useState('');
 
   const history = useHistory();
   const goToLandingPage = useCallback(() => {
     history.push('/feed');
   }, [history]);
-
-  
 
   const onSignUp = () => {
     const payload = {signUpUser, signUpEmail, signUpPass}; 
@@ -27,6 +27,15 @@ function SignIn() {
     }).catch((error) => {
       window.alert('Could not create new user.');
     })
+  };
+
+  const onSignIn = () => {
+    const payload = {signInUser, signInPass};
+    apis.authenticateUser(payload).then((response) => {
+      setUserInfo(response.data);
+    }).catch(error => {
+      window.alert('Incorrect username or password.');
+    });
   };
 
   // navigate to feed upon successful sign in or sign up
@@ -79,13 +88,13 @@ function SignIn() {
                 <input onChange={(e) => setSignInUser(e.target.value)} type="text" className="form-control"/>
               </div>
               {/* Password */}
-              <label className="form-label">Password</label>
-              <input onChange={(e) => setSignInPass(e.target.value)} type="password" className="form-control"/>
+                <label className="form-label">Password</label>
+                <input onChange={(e) => setSignInPass(e.target.value)} type="password" className="form-control"/>
               <Box mt={2}>
                 <button 
                   type="submit" 
                   className="btn btn-primary"
-                  onClick={goToLandingPage}
+                  onClick={onSignIn}
                 >
                   Submit
                 </button>
