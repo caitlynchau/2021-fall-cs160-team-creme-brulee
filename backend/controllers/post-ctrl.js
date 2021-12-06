@@ -96,19 +96,19 @@ deletePost = async (req, res) => {
 }
 
 //POST GET REQUEST
-getPostById = async (req, res) => {
-    await Post.findOne({ _id: req.params.id }, (err, post) => {
+getPostsByUser = async (req, res) => {
+    await Post.find({ username: req.params.username }, (err, posts) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
 
-        if (!post) {
+        if (!posts) {
             return res
                 .status(404)
-                .json({ success: false, error: `Post not found` })
+                .json({ success: false, error: `Posts not found` })
         }
-        return res.status(200).json({ success: true, data: post })
-    }).catch(err => console.log(err))
+        return res.status(200).json({ success: true, data: posts })
+    }).clone().catch(err => console.log(err))   
 }
 
 //POSTS GET REQUEST
@@ -130,6 +130,6 @@ module.exports = {
     createPost,
     updatePost,
     deletePost,
-    getPostById,
+    getPostsByUser,
     getPosts,
 }

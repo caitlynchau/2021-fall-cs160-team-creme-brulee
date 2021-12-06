@@ -6,6 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
+import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -46,7 +47,7 @@ function Post({ postData }) {
             <MoreVertIcon />
           </IconButton>
         }
-        title={postData.username}
+        title={<Link to={`/profile/${postData.username}`}/>}
         subheader={postData.updatedAt}
       />
       <CardMedia

@@ -16,7 +16,7 @@ export const createPost = payload => api.post(`/postapi/post`, payload);
 export const getAllPosts = () => api.get(`/postapi/posts`);
 export const updatePost = (id, payload) => api.put(`/postapi/post/${id}`, payload);
 export const deletePostById = id => api.delete(`/postapi/post/${id}`);
-export const getPostById = id => api.get(`/postapi/post/${id}`);
+export const getPostsByUser = id => api.get(`/postapi/post/${id}`);
 
 const apis = {
     createUser,
@@ -29,7 +29,7 @@ const apis = {
     getAllPosts,
     updatePost,
     deletePostById,
-    getPostById
+    getPostsByUser
 };
 
 export default apis;
