@@ -29,27 +29,12 @@ function SignIn() {
 
   const onSignIn = () => {
     const payload = {signInUser, signInPass};
-    console.log(payload);
     apis.authenticateUser(payload).then((response) => {
       setUserInfo(response.data);
+    }).catch(error => {
+      window.alert('Incorrect username or password.');
     });
-    return <h4>User authentication failed!</h4>
   };
-//   function onSignIn({ username, password }) {
-//     return apis.authenticateUser(username, password)
-//         .catch(error => {
-//             setError('apiError', { message: error });
-//         });
-// }
-
-  // navigate to feed upon failed sign in or sign up
-  useEffect(() => {
-    if (userInfo && userInfo.failure) {
-      console.log('failed');
-      message = 'User authentication failed.';
-      setMessage(message);
-    }
-  }, [])
 
   // navigate to feed upon successful sign in or sign up
   useEffect(() => {

@@ -109,29 +109,22 @@ getUserById = async (req, res) => {
 
 //USER POST REQUEST - authentication
 authenticateUser = async (req, res) => {
-    console.log(req);
+    //console.log(req);
     const body = req.body;
     console.log(body);
-    // if(!body) {
-    //     console.log('no body');
-    //     return res.status(400).json({
-    //         success: false,
-    //         error: 'You must provide a user.'
-    //     });
-    // }
-    //const user = new User({username: body.signInUser, password: body.signInPass});
-    console.log('create temp user');
     await User.findOne({ username: body.signInUser }, (err, user) => {
+        console.log('yuh', user);
         if (!user) {
             return res
                 .status(404)
                 .json({ success: false, error: `User not found` })
         }
         else {
-            if(body.signInPass != user.password) {
+            if(body.signInPass !== user.password) {
+                console.log('here');
                 return res
                     .status(404)
-                    .json({ success: false, error: `User not found` })
+                    .json({ success: false, error: `Incorrect password`, data: null })
             }
         }
         return res.status(201).json({
@@ -140,7 +133,7 @@ authenticateUser = async (req, res) => {
             id: user._id,
             message: "User authenticated!",
         });
-    }).clone().catch(err => console.log(err))
+    }).clone().catch(err => console.log('hi', err));
 }
 
 //USERS GET REQUEST

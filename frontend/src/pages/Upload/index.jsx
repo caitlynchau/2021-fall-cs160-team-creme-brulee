@@ -34,12 +34,9 @@ function Upload() {
   }
 
   const createPost = async () => {
-    console.log('inside create post: file', selectedFile);
     const payload = { location, caption, tags, selectedFile };
-    console.log('payload', payload);
     await apis.createPost(payload).then(res => {
       window.alert('Post Created! ' + res.status);
-      console.log(res.data);
     })
   }
   

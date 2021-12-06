@@ -6,9 +6,7 @@ const api = axios.create({
 
 export const createUser = payload => api.post(`/userapi/user`, payload);
 export const authenticateUser = payload => {
-    console.log('pay', payload);
     return api.post(`/userapi/user/${payload.signInUser}`, payload);
-
 }
 export const getAllUsers = () => api.get(`/userapi/users`);
 export const updateUser = (id, payload) => api.put(`/userapi/user/${id}`, payload);
