@@ -15,6 +15,7 @@ Based on what your changes are use any branch except main such as frontend, back
 
 ###### Commit into the main branch:
 Make a pull request from the branch with your commits to the main branch. 
+
 Suggested: Add reviewers to your pull request to discuss proposed changes and ensure code quality.
 
 ## Launching Briefcase on your local environment:
@@ -35,4 +36,5 @@ npm start
 
 ###### Get the database in sync with backend: (localhost port 27017)
 Make sure to install MongoDB
+
 See reference for how to get started: https://docs.mongodb.com/manual/administration/install-community/ 
