@@ -31,10 +31,16 @@ npm start
 cd into the backend folder and run the following.
 ```
 npm install
-npm start
+npm run dev
 ```
 
 ###### Get the database in sync with backend: (localhost port 27017)
 Make sure to install MongoDB
 
 See reference for how to get started: https://docs.mongodb.com/manual/administration/install-community/ 
+
+###### Run some automated tests using Cypress
+cd into the cypress folder and run the following.
+```
+npx cypress open
+```
