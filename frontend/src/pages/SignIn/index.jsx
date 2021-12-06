@@ -24,7 +24,9 @@ function SignIn() {
     const payload = {signUpUser, signUpEmail, signUpPass}; 
     apis.createUser(payload).then((response) => {
       setUserInfo(response.data);
-    });
+    }).catch((error) => {
+      window.alert('Could not create new user.');
+    })
   };
 
   // navigate to feed upon successful sign in or sign up
