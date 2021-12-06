@@ -27,6 +27,7 @@
 .signin-card {
   margin-top: 40px;
 }
+
 .feed-card {
   padding: 20px;
   width: 500px;
@@ -44,4 +45,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload-card {
+  margin-top: 40px;
 }
