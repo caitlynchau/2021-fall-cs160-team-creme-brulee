@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import { useHistory } from 'react-router-dom';
 import { Card, Box } from '@material-ui/core';
 import apis from "../../api";
+import { useSelector } from 'react-redux';
 
 function Upload() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -9,6 +10,8 @@ function Upload() {
   const [caption, setCaption] = useState('');
   const [tags, setTags] = useState('');
   const [itinerary, setItinerary] = useState('');
+  
+  const currentUser = useSelector((state) => state.user.currentUser);
 
   const handleFileUpload = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -26,6 +29,7 @@ function Upload() {
     formData.append('caption', caption);
     formData.append('image', selectedFile);
     formData.append('itinerary', itinerary)
+    formData.append('username', currentUser);
     await apis.createPost(formData).then(res => {
       window.alert('Post Created! ' + res.status);
       goToFeed();

@@ -18,6 +18,7 @@ createPost = (req, res) => {
         caption : body.caption,
         tags : body.tags,
         itinerary: body.itinerary,
+        username: body.username,
         image: url + '/public/' + req.file.filename
     });
     

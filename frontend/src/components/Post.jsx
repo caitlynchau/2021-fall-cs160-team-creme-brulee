@@ -38,7 +38,7 @@ function Post({ postData }) {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="location">
-            J
+            {postData.username[0].toUpperCase()}
           </Avatar>
         }
         action={
@@ -46,7 +46,7 @@ function Post({ postData }) {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Joyce"
+        title={postData.username}
         subheader={postData.updatedAt}
       />
       <CardMedia

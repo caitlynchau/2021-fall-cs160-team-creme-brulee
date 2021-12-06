@@ -18,7 +18,7 @@ function Navigation() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <button type="button" class="btn btn-light" onClick={() => {history.push("/feed")}}>Feed</button>
+              <button type="button" className="btn btn-light" onClick={() => {history.push("/feed")}}>Feed</button>
             </li>
           </ul>
 
