@@ -23,7 +23,7 @@ function Feed() {
   return (
     <div className="feed">
       {currentUser !== '' &&
-        <Box className="feed--username">{`Welcome back, @${currentUser}`}</Box>
+        <Box className="feed--username">{`Welcome back, @${currentUser}!`}</Box>
       }
       {posts && posts.success && 
         posts.data.slice().reverse().map(post => 

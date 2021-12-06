@@ -3,7 +3,6 @@ const User = require('../models/user-model.js');
 //USER POST REQUEST
 createUser = (req, res) => {
     const body = req.body;
-    console.log(body);
     if(!body) {
         return res.status(400).json({
             success: false,
@@ -89,10 +88,6 @@ deleteUser = async (req, res) => {
 
 //USER GET REQUEST
 getUserById = async (req, res) => {
-    console.log('body', req.params);
-    console.log(req.body);
-    console.log(req.params.username);
-    console.log('hello');
     const tempPass = 'swatip';
     await User.findOne({ username: req.params.username }, (err, user) => {
         if (err) {
@@ -109,11 +104,8 @@ getUserById = async (req, res) => {
 
 //USER POST REQUEST - authentication
 authenticateUser = async (req, res) => {
-    //console.log(req);
     const body = req.body;
-    console.log(body);
     await User.findOne({ username: body.signInUser }, (err, user) => {
-        console.log('yuh', user);
         if (!user) {
             return res
                 .status(404)
@@ -121,7 +113,6 @@ authenticateUser = async (req, res) => {
         }
         else {
             if(body.signInPass !== user.password) {
-                console.log('here');
                 return res
                     .status(404)
                     .json({ success: false, error: `Incorrect password`, data: null })
@@ -133,7 +124,7 @@ authenticateUser = async (req, res) => {
             id: user._id,
             message: "User authenticated!",
         });
-    }).clone().catch(err => console.log('hi', err));
+    }).clone().catch(err => console.log(err));
 }
 
 //USERS GET REQUEST

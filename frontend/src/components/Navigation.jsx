@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { resetUser } from '../redux/userSlice';
 
 /**
  * Navigation bar
@@ -8,6 +9,7 @@ import { useSelector } from 'react-redux';
  */
 function Navigation() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const currentUser = useSelector(state => state.user.currentUser);
   console.log('current user', currentUser);
   return (
@@ -39,11 +41,25 @@ function Navigation() {
             </form>  
           }
 
+          {currentUser !== '' &&
+            <form className="d-flex nav-btn">
+              <button 
+                className="btn btn-outline-dark" 
+                type="button"
+                onClick={() => {
+                  history.push(`/profile/${currentUser}`);
+                }}>
+                  Profile
+              </button>
+            </form>  
+          }
+
           <form className="d-flex nav-btn">
             <button 
               className="btn btn-outline-dark" 
               type="button"
               onClick={() => {
+                if (currentUser !== '') dispatch(resetUser());
                 history.push("/signin");
               }}>
                 {currentUser === '' ? 'Login' : 'Logout'}
