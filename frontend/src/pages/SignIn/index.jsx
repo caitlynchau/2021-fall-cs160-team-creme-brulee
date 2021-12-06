@@ -1,6 +1,7 @@
-  import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Box, Card } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+//import { setError } from 'react-hook-form'
 import apis from '../../api';
 
 function SignIn() {
@@ -12,19 +13,43 @@ function SignIn() {
 
   const [newUser, setNewUserForm] = React.useState(false);
   const [userInfo, setUserInfo] = React.useState(null);
+  const [message, setMessage] = React.useState('');
 
   const history = useHistory();
   const goToLandingPage = useCallback(() => {
     history.push('/feed');
   }, [history]);
 
-  const payload = {signUpUser, signUpEmail, signUpPass}; 
-
   const onSignUp = () => {
+    const payload = {signUpUser, signUpEmail, signUpPass}; 
     apis.createUser(payload).then((response) => {
       setUserInfo(response.data);
     });
   };
+
+  const onSignIn = () => {
+    const payload = {signInUser, signInPass};
+    console.log(payload);
+    apis.authenticateUser(payload).then((response) => {
+      setUserInfo(response.data);
+    });
+    return <h4>User authentication failed!</h4>
+  };
+//   function onSignIn({ username, password }) {
+//     return apis.authenticateUser(username, password)
+//         .catch(error => {
+//             setError('apiError', { message: error });
+//         });
+// }
+
+  // navigate to feed upon failed sign in or sign up
+  useEffect(() => {
+    if (userInfo && userInfo.failure) {
+      console.log('failed');
+      message = 'User authentication failed.';
+      setMessage(message);
+    }
+  }, [])
 
   // navigate to feed upon successful sign in or sign up
   useEffect(() => {
@@ -76,13 +101,13 @@ function SignIn() {
                 <input onChange={(e) => setSignInUser(e.target.value)} type="text" className="form-control"/>
               </div>
               {/* Password */}
-              <label className="form-label">Password</label>
-              <input onChange={(e) => setSignInPass(e.target.value)} type="password" className="form-control"/>
+                <label className="form-label">Password</label>
+                <input onChange={(e) => setSignInPass(e.target.value)} type="password" className="form-control"/>
               <Box mt={2}>
                 <button 
                   type="submit" 
                   className="btn btn-primary"
-                  onClick={goToLandingPage}
+                  onClick={onSignIn}
                 >
                   Submit
                 </button>

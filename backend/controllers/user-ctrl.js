@@ -3,7 +3,7 @@ const User = require('../models/user-model.js');
 //USER POST REQUEST
 createUser = (req, res) => {
     const body = req.body;
-
+    console.log(body);
     if(!body) {
         return res.status(400).json({
             success: false,
@@ -32,6 +32,7 @@ createUser = (req, res) => {
     });
 }
 
+
 //USER PUT REQUEST
 updateUser = async (req, res) => {
     const body = req.body
@@ -51,7 +52,7 @@ updateUser = async (req, res) => {
             })
         }
         user.username = body.username
-        user.displayName = body.displayName
+        user.password = body.password
         user.email = body.email
         user.save().then(() => {
                 return res.status(200).json({
@@ -88,18 +89,58 @@ deleteUser = async (req, res) => {
 
 //USER GET REQUEST
 getUserById = async (req, res) => {
-    await User.findOne({ _id: req.params.id }, (err, user) => {
+    console.log('body', req.params);
+    console.log(req.body);
+    console.log(req.params.username);
+    console.log('hello');
+    const tempPass = 'swatip';
+    await User.findOne({ username: req.params.username }, (err, user) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
-
         if (!user) {
             return res
                 .status(404)
                 .json({ success: false, error: `User not found` })
         }
         return res.status(200).json({ success: true, data: user })
-    }).catch(err => console.log(err))
+    }).clone().catch(err => console.log(err))
+}
+
+//USER POST REQUEST - authentication
+authenticateUser = async (req, res) => {
+    console.log(req);
+    const body = req.body;
+    console.log(body);
+    // if(!body) {
+    //     console.log('no body');
+    //     return res.status(400).json({
+    //         success: false,
+    //         error: 'You must provide a user.'
+    //     });
+    // }
+    //const user = new User({username: body.signInUser, password: body.signInPass});
+    console.log('create temp user');
+    await User.findOne({ username: body.signInUser }, (err, user) => {
+        if (!user) {
+            return res
+                .status(404)
+                .json({ success: false, error: `User not found` })
+        }
+        else {
+            if(body.signInPass != user.password) {
+                return res
+                    .status(404)
+                    .json({ success: false, error: `User not found` })
+            }
+        }
+        return res.status(201).json({
+            success: true,
+            data: user,
+            id: user._id,
+            message: "User authenticated!",
+        });
+    }).clone().catch(err => console.log(err))
 }
 
 //USERS GET REQUEST
@@ -122,5 +163,6 @@ module.exports = {
     updateUser,
     deleteUser,
     getUserById,
+    authenticateUser,
     getUsers,
 }

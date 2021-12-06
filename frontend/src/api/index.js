@@ -5,10 +5,15 @@ const api = axios.create({
 });
 
 export const createUser = payload => api.post(`/userapi/user`, payload);
+export const authenticateUser = payload => {
+    console.log('pay', payload);
+    return api.post(`/userapi/user/${payload.signInUser}`, payload);
+
+}
 export const getAllUsers = () => api.get(`/userapi/users`);
 export const updateUser = (id, payload) => api.put(`/userapi/user/${id}`, payload);
 export const deleteUserById = id => api.delete(`/userapi/user/${id}`);
-export const getUserById = id => api.get(`/userapi/user/${id}`);
+export const getUserById = username => api.get(`/userapi/user/${username}`);
 export const createPost = payload => api.post(`/postapi/post`, payload);
 export const getAllPosts = () => api.get(`/postapi/posts`);
 export const updatePost = (id, payload) => api.put(`/postapi/post/${id}`, payload);
@@ -21,6 +26,7 @@ const apis = {
     updateUser,
     deleteUserById,
     getUserById,
+    authenticateUser,
     createPost,
     getAllPosts,
     updatePost,
