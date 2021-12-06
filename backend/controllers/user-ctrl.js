@@ -3,7 +3,6 @@ const User = require('../models/user-model.js');
 //USER POST REQUEST
 createUser = (req, res) => {
     const body = req.body;
-
     if(!body) {
         return res.status(400).json({
             success: false,
@@ -32,6 +31,7 @@ createUser = (req, res) => {
     });
 }
 
+
 //USER PUT REQUEST
 updateUser = async (req, res) => {
     const body = req.body
@@ -51,7 +51,7 @@ updateUser = async (req, res) => {
             })
         }
         user.username = body.username
-        user.displayName = body.displayName
+        user.password = body.password
         user.email = body.email
         user.save().then(() => {
                 return res.status(200).json({
@@ -88,18 +88,43 @@ deleteUser = async (req, res) => {
 
 //USER GET REQUEST
 getUserById = async (req, res) => {
-    await User.findOne({ _id: req.params.id }, (err, user) => {
+    const tempPass = 'swatip';
+    await User.findOne({ username: req.params.username }, (err, user) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
-
         if (!user) {
             return res
                 .status(404)
                 .json({ success: false, error: `User not found` })
         }
         return res.status(200).json({ success: true, data: user })
-    }).catch(err => console.log(err))
+    }).clone().catch(err => console.log(err))
+}
+
+//USER POST REQUEST - authentication
+authenticateUser = async (req, res) => {
+    const body = req.body;
+    await User.findOne({ username: body.signInUser }, (err, user) => {
+        if (!user) {
+            return res
+                .status(404)
+                .json({ success: false, error: `User not found` })
+        }
+        else {
+            if(body.signInPass !== user.password) {
+                return res
+                    .status(404)
+                    .json({ success: false, error: `Incorrect password`, data: null })
+            }
+        }
+        return res.status(201).json({
+            success: true,
+            data: user,
+            id: user._id,
+            message: "User authenticated!",
+        });
+    }).clone().catch(err => console.log(err));
 }
 
 //USERS GET REQUEST
@@ -114,7 +139,7 @@ getUsers = async (req, res) => {
                 .json({ success: false, error: `User not found` })
         }
         return res.status(200).json({ success: true, data: users })
-    }).catch(err => console.log(err))
+    }).clone().catch(err => console.log(err))
 }
 
 module.exports = {
@@ -122,5 +147,6 @@ module.exports = {
     updateUser,
     deleteUser,
     getUserById,
+    authenticateUser,
     getUsers,
 }
