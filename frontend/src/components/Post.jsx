@@ -10,11 +10,11 @@ import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { useHistory } from 'react-router-dom';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -22,9 +22,6 @@ const ExpandMore = styled((props) => {
   })(({ theme, expand }) => ({
   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
   marginLeft: 'auto',
-  // transition: theme.transitions.create('transform', {
-  //   duration: theme.transitions.duration.shortest,
-  // }),
 }));
 
 function Post({ postData }) {
@@ -34,11 +31,16 @@ function Post({ postData }) {
     setExpanded(!expanded);
   };
 
+  const history = useHistory();
+
+  const dateOptions = {month: 'long', day: 'numeric', year: 'numeric'};
+  const postDate = new Date(postData.updatedAt.split('T')[0]);
+
   return (
     <Card key={postData._id} sx={{ maxWidth: 345 }} className="feed-card">
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="location">
+          <Avatar aria-label="location">
             {postData.username[0].toUpperCase()}
           </Avatar>
         }
@@ -47,20 +49,15 @@ function Post({ postData }) {
             <MoreVertIcon />
           </IconButton>
         }
-        title={<Link to={`/profile/${postData.username}`}/>}
-        subheader={postData.updatedAt}
+        title={
+          <Link component="button" variant="body1" onClick={() => history.push(`/profile/${postData.username}`)}>{postData.username}</Link>
+        }
+        subheader={postDate.toLocaleDateString('en-US', dateOptions)}
       />
       <CardMedia
         component="img"
         image={postData.image}
       />
-      <CardContent>
-        <Typography variant="body1">
-          {postData.location}
-        </Typography>
-        <Typography variant="body1">{postData.caption}</Typography>
-        <Typography paragraph>{postData.tags}</Typography>
-      </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
@@ -77,9 +74,18 @@ function Post({ postData }) {
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
+
+      <CardContent className="post-body">
+        <Typography variant="h6">
+          {postData.location}
+        </Typography>
+        <Typography variant="body1">{postData.caption}</Typography>
+      </CardContent>
+      
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>{postData.itinerary}</Typography>
+          <Typography variant="overline">{postData.tags}</Typography>
         </CardContent>
       </Collapse>
     </Card>

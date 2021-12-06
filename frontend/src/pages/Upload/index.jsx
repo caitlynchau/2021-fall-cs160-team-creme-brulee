@@ -54,7 +54,7 @@ function Upload() {
               {/* Caption */}
               <div>
                 <label className="form-label">Caption</label>
-                <input type="text" value={caption} onChange={(e) => setCaption(e.target.value)} className="form-control" placeholder="Tech Museum in DTSJ"/>
+                <textarea value={caption} onChange={(e) => setCaption(e.target.value)} className="form-control" rows="4"/>
               </div>
               {/* Tags */}
               <label className="form-label">Tags</label>
@@ -62,7 +62,6 @@ function Upload() {
               {/* Itinerary */}
               <label className="form-label">Itinerary</label>
               <textarea value={itinerary} onChange={(e) => setItinerary(e.target.value)} className="form-control" rows="4"/>
-              
               
               <Box mt={2}>
                 <button 
