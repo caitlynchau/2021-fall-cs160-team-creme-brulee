@@ -19,17 +19,17 @@ export const deletePostById = id => api.delete(`/postapi/post/${id}`);
 export const getPostsByUser = id => api.get(`/postapi/post/${id}`);
 
 const apis = {
-    createUser,
-    getAllUsers,
-    updateUser,
-    deleteUserById,
-    getUserById,
-    authenticateUser,
-    createPost,
-    getAllPosts,
-    updatePost,
-    deletePostById,
-    getPostsByUser
+  createUser,
+  getAllUsers,
+  updateUser,
+  deleteUserById,
+  getUserById,
+  authenticateUser,
+  createPost,
+  getAllPosts,
+  updatePost,
+  deletePostById,
+  getPostsByUser
 };
 
 export default apis;
