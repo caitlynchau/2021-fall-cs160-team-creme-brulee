@@ -8,6 +8,7 @@ import Feed from "../pages/Feed";
 import Admin from "../pages/Admin";
 import SignIn from '../pages/SignIn';
 import Upload from '../pages/Upload';
+import Profile from '../pages/Profile';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/feed" component={Feed}/>
             <Route path="/admin" component={Admin}/>
             <Route path="/upload" component={Upload} />
+            <Route exact path="/profile/:username" component={Profile} />
           </Switch>  
         </div>
       </Router>

@@ -1,9 +1,13 @@
-  import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Box, Card } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/userSlice';
 import apis from '../../api';
 
 function SignIn() {
+  const dispatch = useDispatch();
+
   const [signUpEmail, setSignUpEmail] = React.useState('');
   const [signUpUser, setSignUpUser] = React.useState('');
   const [signUpPass, setSignUpPass] = React.useState('');
@@ -18,20 +22,31 @@ function SignIn() {
     history.push('/feed');
   }, [history]);
 
-  const payload = {signUpUser, signUpEmail, signUpPass}; 
-
   const onSignUp = () => {
+    const payload = {signUpUser, signUpEmail, signUpPass}; 
     apis.createUser(payload).then((response) => {
       setUserInfo(response.data);
+    }).catch((error) => {
+      window.alert('Could not create new user.');
+    })
+  };
+
+  const onSignIn = () => {
+    const payload = {signInUser, signInPass};
+    apis.authenticateUser(payload).then((response) => {
+      setUserInfo(response.data);
+    }).catch(error => {
+      window.alert('Incorrect username or password.');
     });
   };
 
   // navigate to feed upon successful sign in or sign up
   useEffect(() => {
     if (userInfo && userInfo.success) {
+      dispatch(setUser(userInfo.data.username));
       goToLandingPage();
     }
-  }, [userInfo, goToLandingPage])
+  }, [userInfo, goToLandingPage, dispatch])
 
   return (  
     <div>
@@ -76,13 +91,13 @@ function SignIn() {
                 <input onChange={(e) => setSignInUser(e.target.value)} type="text" className="form-control"/>
               </div>
               {/* Password */}
-              <label className="form-label">Password</label>
-              <input onChange={(e) => setSignInPass(e.target.value)} type="password" className="form-control"/>
+                <label className="form-label">Password</label>
+                <input onChange={(e) => setSignInPass(e.target.value)} type="password" className="form-control"/>
               <Box mt={2}>
                 <button 
                   type="submit" 
                   className="btn btn-primary"
-                  onClick={goToLandingPage}
+                  onClick={onSignIn}
                 >
                   Submit
                 </button>

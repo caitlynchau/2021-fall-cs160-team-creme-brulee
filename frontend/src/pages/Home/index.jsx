@@ -2,7 +2,7 @@ import React from 'react';
 import GridContainer from '../../components/GridContainer';
 import GridItem from '../../components/GridItem';
 import Parallax from '../../components/Parallax';
-import { Button } from '@material-ui/core';
+// import { Button } from '@material-ui/core';
 
 function Home() {
   return (
@@ -16,9 +16,7 @@ function Home() {
             <h4>Get inspired. Find new destinations. Travel the world. Discover
               new destinations and venues based on your preferences. 
             </h4>
-            <Button href="/signin">
-              Sign Up Here
-            </Button>
+            <a href="/signin" className="btn btn-primary btn-lg" role="button">Sign Up Here</a>
           </GridItem>
         </GridContainer>
         </div>

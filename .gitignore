@@ -3,3 +3,7 @@ node_modules
 node
 npm
 .idea
+*.jpg
+*.jpeg
+*.png
+*.jfif
