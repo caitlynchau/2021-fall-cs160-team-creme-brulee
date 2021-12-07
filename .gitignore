@@ -3,4 +3,7 @@ node_modules
 node
 npm
 .idea
-backend/public
+*.jpg
+*.jpeg
+*.png
+*.jfif
